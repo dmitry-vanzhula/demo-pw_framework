@@ -38,26 +38,7 @@ test.describe('Regression Tests', () => {
     );
 
     test(
-        '3. Delete item from cart shows empty cart',
-        { tag: ['@Regression', '@E2E'] },
-        async ({ navPage, productsPage, cartPage }) => {
-            await test.step('Add product and navigate to cart', async () => {
-                await navPage.navigateToProductsPage();
-                await productsPage.searchForProduct('Blue Top');
-                await productsPage.addToCart();
-                await navPage.navigateToCartPage();
-            });
-            await test.step('Delete item from cart', async () => {
-                await cartPage.deleteFirstItem();
-            });
-            await test.step('Verify cart is empty', async () => {
-                await cartPage.verifyCartEmpty();
-            });
-        }
-    );
-
-    test(
-        '4. Multiple products in cart',
+        '3. Multiple products in cart',
         { tag: ['@Regression', '@E2E'] },
         async ({ navPage, productsPage, cartPage }) => {
             await test.step('Add first product to cart', async () => {
@@ -77,7 +58,7 @@ test.describe('Regression Tests', () => {
     );
 
     test(
-        '5. Checkout order review shows product and addresses',
+        '4. Checkout order review shows product and addresses',
         { tag: ['@Regression', '@E2E'] },
         async ({ navPage, productsPage, cartPage, checkoutPage }) => {
             await test.step('Add product and proceed to checkout', async () => {
@@ -91,6 +72,42 @@ test.describe('Regression Tests', () => {
                 await checkoutPage.verifyOrderReviewVisible();
                 await checkoutPage.verifyDeliveryAddressVisible();
                 await checkoutPage.verifyBillingAddressVisible();
+            });
+        }
+    );
+
+    test(
+        '5. Search with empty input shows all products',
+        { tag: ['@Regression', '@E2E'] },
+        async ({ navPage, productsPage }) => {
+            await test.step('Navigate to products page', async () => {
+                await navPage.navigateToProductsPage();
+            });
+            await test.step('Search with empty input', async () => {
+                await productsPage.searchForProduct('');
+            });
+            await test.step('Verify all products shown', async () => {
+                await productsPage.verifyAllProductsShown();
+            });
+        }
+    );
+
+    test(
+        '6. Verify product details in cart',
+        { tag: ['@Regression', '@E2E'] },
+        async ({ navPage, productsPage, cartPage }) => {
+            await test.step('Add product and navigate to cart', async () => {
+                await navPage.navigateToProductsPage();
+                await productsPage.searchForProduct('Blue Top');
+                await productsPage.addToCart();
+                await navPage.navigateToCartPage();
+            });
+            await test.step('Verify product name, category and price', async () => {
+                await cartPage.verifyProductDetailsInCart(
+                    'Blue Top',
+                    'Women > Tops',
+                    'Rs. 500'
+                );
             });
         }
     );

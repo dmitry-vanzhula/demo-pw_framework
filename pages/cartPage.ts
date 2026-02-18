@@ -30,6 +30,15 @@ class CartPage {
         await this.deleteItemButton.click();
     }
 
+    async clearCart(): Promise<void> {
+        await this.page.goto(process.env.URL as string + '/view_cart');
+        const deleteButtons = this.page.locator('.cart_quantity_delete');
+        while ((await deleteButtons.count()) > 0) {
+            await deleteButtons.first().click();
+            await this.page.waitForTimeout(300);
+        }
+    }
+
     async verifyCartEmpty(): Promise<void> {
         await expect(this.page.getByText('Cart is empty!')).toBeVisible();
     }
@@ -48,9 +57,10 @@ class CartPage {
     }
 
     async verifyProductDetailsInCart(productName: string, category: string, price: string): Promise<void> {
-        await expect(this.cartItemDescription.first()).toContainText(productName);
-        await expect(this.cartItemDescription.first()).toContainText(category);
-        await expect(this.page.locator('.cart_price').first()).toContainText(price);
+        const productRow = this.page.locator('tr').filter({ hasText: productName }).first();
+        await expect(productRow.locator('.cart_description')).toContainText(productName);
+        await expect(productRow.locator('.cart_description')).toContainText(category);
+        await expect(productRow.locator('.cart_price')).toContainText(price);
     }
 
     async verifyCartTotalForSingleItem(price: string): Promise<void> {

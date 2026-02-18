@@ -1,49 +1,49 @@
 {
-  "name": "demo-pw_framework",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "npx playwright test --project=webkit-logged-in",
-    "ci": "npx playwright test --project=webkit-logged-in --workers=1",
-    "flaky": "npx playwright test --project=webkit-logged-in --repeat-each=20",
-    "debug": "npx playwright test --project=webkit-logged-in --debug",
-    "ui": "npx playwright test --project=webkit-logged-in --ui",
-    "smoke": "npx playwright test --grep @Smoke --project=webkit-logged-in",
-    "sanity": "npx playwright test --grep @Sanity --project=webkit-logged-in",
-    "api": "npx playwright test tests/api/ --project=api",
-    "regression": "npx playwright test --grep @Regression --project=webkit-logged-in",
-    "fullTest": "npx playwright test",
-    "prepare": "husky"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
-  "devDependencies": {
-    "@faker-js/faker": "^10.3.0",
-    "@playwright/test": "^1.58.2",
-    "@types/dotenv": "^6.1.1",
-    "@types/node": "^25.2.3",
-    "@typescript-eslint/eslint-plugin": "^8.56.0",
-    "@typescript-eslint/parser": "^8.56.0",
-    "eslint": "^9.39.2",
-    "eslint-config-prettier": "^10.1.8",
-    "eslint-define-config": "^2.1.0",
-    "eslint-plugin-playwright": "^2.6.0",
-    "eslint-plugin-prettier": "^5.5.5",
-    "husky": "^9.1.7",
-    "jiti": "^2.6.1",
-    "lint-staged": "^16.2.7"
-  },
-  "dependencies": {
-    "dotenv": "^17.2.4",
-    "zod": "^4.3.6"
-  },
-  "lint-staged": {
-    "*.{ts,tsx,js,jsx}": [
-      "npx eslint --fix",
-      "npx prettier --write"
-    ]
-  }
+    "name": "demo-pw_framework",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "npx playwright test --project=chrome-guest --project=chrome-logged-in --project=api --workers=6",
+        "ci": "npx playwright test --project=chrome-logged-in --workers=1",
+        "flaky": "npx playwright test --project=chrome-logged-in --repeat-each=20",
+        "debug": "npx playwright test --project=chrome-logged-in --debug",
+        "ui": "npx playwright test --project=chrome-logged-in --ui",
+        "smoke": "npx playwright test --grep @Smoke --project=chrome-guest",
+        "sanity": "npx playwright test --grep @Sanity --project=chrome-guest",
+        "api": "npx playwright test tests/api/ --project=api",
+        "regression": "npx playwright test --grep @Regression --project=chrome-logged-in",
+        "fullTest": "npx playwright test",
+        "prepare": "husky"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "type": "commonjs",
+    "devDependencies": {
+        "@faker-js/faker": "^10.3.0",
+        "@playwright/test": "^1.58.2",
+        "@types/dotenv": "^6.1.1",
+        "@types/node": "^25.2.3",
+        "@typescript-eslint/eslint-plugin": "^8.56.0",
+        "@typescript-eslint/parser": "^8.56.0",
+        "eslint": "^9.39.2",
+        "eslint-config-prettier": "^10.1.8",
+        "eslint-define-config": "^2.1.0",
+        "eslint-plugin-playwright": "^2.6.0",
+        "eslint-plugin-prettier": "^5.5.5",
+        "husky": "^9.1.7",
+        "jiti": "^2.6.1",
+        "lint-staged": "^16.2.7"
+    },
+    "dependencies": {
+        "dotenv": "^17.2.4",
+        "zod": "^4.3.6"
+    },
+    "lint-staged": {
+        "*.{ts,tsx,js,jsx}": [
+            "npx eslint --fix",
+            "npx prettier --write"
+        ]
+    }
 }

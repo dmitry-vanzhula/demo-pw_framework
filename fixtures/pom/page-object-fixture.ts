@@ -4,6 +4,7 @@ import HomePage from '../../pages/homePage';
 import ProductsPage from '../../pages/productsPage';
 import CartPage from '../../pages/cartPage';
 import CheckoutPage from '../../pages/checkoutPage';
+import ContactPage from '../../pages/contactPage';
 
 export type FrameworkFixture = {
     navPage: NavPage;
@@ -11,6 +12,7 @@ export type FrameworkFixture = {
     productsPage: ProductsPage;
     cartPage: CartPage;
     checkoutPage: CheckoutPage;
+    contactPage: ContactPage;
 }
 
 const test = base.extend<FrameworkFixture>({
@@ -32,6 +34,10 @@ const test = base.extend<FrameworkFixture>({
 
     checkoutPage: async ({ page }, use) => {
         await use(new CheckoutPage(page));
+    },
+
+    contactPage: async ({ page }, use) => {
+        await use(new ContactPage(page));
     },
 });
 

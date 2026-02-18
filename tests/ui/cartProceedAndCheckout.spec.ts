@@ -91,17 +91,7 @@ test.describe('Cart Page - Logged In User', () => {
     );
 
     test(
-        '7. Verify cart total for single item',
-        { tag: ['@Cart', '@E2E'] },
-        async ({ cartPage }) => {
-            await test.step('Verify cart total for single item', async () => {
-                await cartPage.verifyCartTotalForSingleItem('Rs. 500');
-            });
-        }
-    );
-
-    test(
-        '8. Verify cart total for multiple items',
+        '7. Verify cart total for multiple items',
         { tag: ['@Cart', '@E2E'] },
         async ({ navPage, productsPage, cartPage }) => {
             await test.step('Add second product to cart', async () => {

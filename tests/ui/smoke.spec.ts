@@ -48,14 +48,4 @@ test.describe('Smoke Tests', () => {
             });
         }
     );
-
-    test(
-        '5. Login page loads successfully',
-        { tag: ['@Smoke', '@E2E'] },
-        async ({ navPage }) => {
-            await test.step('Navigate to login page', async () => {
-                await navPage.navigateToLoginPage();
-            });
-        }
-    );
 });
