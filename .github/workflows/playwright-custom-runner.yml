@@ -156,7 +156,7 @@ jobs:
 
     build-report:
         name: Build Report
-        if: always()
+        if: always() && github.ref == 'refs/heads/main'
         needs: merge-report
         runs-on: ubuntu-latest
         steps:
@@ -176,7 +176,7 @@ jobs:
 
     deploy-report:
         name: Deploy Report
-        if: always()
+        if: always() && github.ref == 'refs/heads/main'
         needs: build-report
         environment:
             name: github-pages

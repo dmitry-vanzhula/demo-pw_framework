@@ -71,6 +71,15 @@ class NavPage {
         await this.page.goto(process.env.URL as string + '/view_cart');
         await expect(this.cartPageTitle).toHaveText('Shopping Cart');
     }
+
+    get contactPageTitle(): Locator {
+        return this.page.getByRole('heading', { name: 'Contact Us' });
+    }
+
+    async navigateToContactUsPage(): Promise<void> {
+        await this.page.goto(process.env.URL as string + '/contact_us');
+        await expect(this.contactPageTitle).toBeVisible();
+    }
 }
 
 export default NavPage;
